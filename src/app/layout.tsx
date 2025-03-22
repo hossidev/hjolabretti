@@ -6,12 +6,14 @@ const bowlby = Bowlby_One_SC({
   weight: "400",
   display: "swap",
   variable: "--font-bowlby-sc",
+  subsets: ["latin"],
 });
 
 const dmMono = DM_Mono({
   weight: "500",
   display: "swap",
   variable: "--font-dm-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
