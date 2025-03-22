@@ -95,3 +95,11 @@
     transform: translateX(0);
   }
 }
+
+.video-mask {
+  mask-image: url("/video-mask.png");
+  mask-mode: alpha;
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  mask-size: 100% auto;
+}
