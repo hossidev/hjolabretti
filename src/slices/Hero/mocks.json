@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Weigh"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Commodo reprehenderit ullamco aute officia proident elit duis irure et culpa cupidatat laborum laboris consequat. Est minim esse ullamco elit est pariatur. Magna qui aliquip commodo proident consectetur minim eiusmod in minim duis."
+						}
+					}
+				]
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"key": "b3a10134-f14c-439b-a647-d458a87c66c9",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "voyage"
+				}
+			}
+		},
+		"items": []
+	}
+]
