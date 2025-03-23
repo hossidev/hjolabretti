@@ -52,7 +52,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
 
   return (
     <div className={clsx("flex flex-col gap-6", className)}>
-      <Options title="Deck" selectedName={selectedDeck?.uid}>
+      <Options title="Borð" selectedName={selectedDeck?.uid}>
         {decks.map((deck) => (
           <Option
             key={deck.uid}
@@ -69,7 +69,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
           </Option>
         ))}
       </Options>
-      <Options title="Wheels" selectedName={selectedWheel?.uid}>
+      <Options title="Hjól" selectedName={selectedWheel?.uid}>
         {wheels.map((wheel) => (
           <Option
             key={wheel.uid}
@@ -86,7 +86,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
           </Option>
         ))}
       </Options>
-      <Options title="Trucks" selectedName={selectedTruck?.uid}>
+      <Options title="Stál" selectedName={selectedTruck?.uid}>
         {metals.map((metal) => (
           <Option
             key={metal.uid}
@@ -98,7 +98,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
           </Option>
         ))}
       </Options>
-      <Options title="Bolts" selectedName={selectedBolt?.uid}>
+      <Options title="Boltar" selectedName={selectedBolt?.uid}>
         {metals.map((metal) => (
           <Option
             key={metal.uid}
