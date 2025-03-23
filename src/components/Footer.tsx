@@ -1,11 +1,17 @@
+import { asImageSrc } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Bounded } from "@/components/Bounded";
+import { FooterPhysics } from "@/components/FooterPhysics";
 import { Logo } from "@/components/Logo";
 import { createClient } from "@/prismicio";
 
 export async function Footer({}) {
   const client = createClient();
   const settings = await client.getSingle("settings");
+
+  const boardTextureURLs = settings.data.footer_skateboards
+    .map((item) => asImageSrc(item.skateboard, { h: 600 }))
+    .filter((url): url is string => Boolean(url));
 
   return (
     <footer className="bg-texture bg-zinc-900 text-white overflow-hidden">
@@ -16,6 +22,10 @@ export async function Footer({}) {
           field={settings.data.footer_image}
           className="object-cover"
           width={1200}
+        />
+        <FooterPhysics
+          boardTextureURLs={boardTextureURLs}
+          className="absolute inset-0 overflow-hidden"
         />
         <Logo className="pointer-events-none relative h-20 mix-blend-exclusion md:h-28" />
       </div>
