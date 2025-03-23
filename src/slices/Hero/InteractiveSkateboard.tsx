@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Skateboard } from "@/components/Skateboard";
+import { Hotspot } from "@/slices/Hero/Hotspot";
+import { WavyPaths } from "@/slices/Hero/WavyPaths";
 
 const INITIAL_CAMERA_POSITION = [1.5, 1, 1.4] as const;
 
@@ -51,6 +53,11 @@ function Scene({
   const originRef = useRef<THREE.Group>(null);
 
   const [animating, setAnimating] = useState(false);
+  const [showHotspot, setShowHotspot] = useState({
+    front: true,
+    middle: true,
+    back: true,
+  });
 
   const { camera } = useThree();
 
@@ -101,6 +108,8 @@ function Scene({
     if (!board || !origin || animating) return;
 
     const { name } = event.object;
+
+    setShowHotspot((current) => ({ ...current, [name]: false }));
 
     if (name === "back") {
       ollie(board);
@@ -193,16 +202,32 @@ function Scene({
               constantWheelSpin
             />
 
+            <Hotspot
+              isVisible={!animating && showHotspot.front}
+              position={[0, 0.38, 1]}
+              color="#B8FC39"
+            />
+
             <mesh position={[0, 0.27, 0.9]} name="front" onClick={onClick}>
               <boxGeometry args={[0.6, 0.2, 0.58]} />
               <meshStandardMaterial visible={false} />
             </mesh>
 
+            <Hotspot
+              isVisible={!animating && showHotspot.middle}
+              position={[0, 0.33, 0]}
+              color="#FF7A51"
+            />
             <mesh position={[0, 0.27, 0]} name="middle" onClick={onClick}>
               <boxGeometry args={[0.6, 0.1, 1.2]} />
               <meshStandardMaterial visible={false} />
             </mesh>
 
+            <Hotspot
+              isVisible={!animating && showHotspot.back}
+              position={[0, 0.35, -0.9]}
+              color="#46ACFA"
+            />
             <mesh position={[0, 0.27, -0.9]} name="back" onClick={onClick}>
               <boxGeometry args={[0.6, 0.2, 0.58]} />
               <meshStandardMaterial visible={false} />
@@ -221,7 +246,9 @@ function Scene({
           transform
           zIndexRange={[1, 0]}
           occlude="blending"
-        ></Html>
+        >
+          <WavyPaths />
+        </Html>
       </group>
     </group>
   );

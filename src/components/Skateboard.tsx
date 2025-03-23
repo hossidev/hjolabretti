@@ -9,6 +9,7 @@ import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
+
 type SkateboardProps = {
   wheelTextureURLs: string[];
   wheelTextureURL: string;

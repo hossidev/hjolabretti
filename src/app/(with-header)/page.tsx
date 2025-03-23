@@ -1,13 +1,13 @@
-import { asImageSrc, Content } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps, SliceZone } from "@prismicio/react";
-import { type Metadata } from "next";
-import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+
 export default async function Page() {
   const client = createClient();
-  const page = await client.getSingle("heim").catch(() => notFound());
-  const slices = bundleTextandImageSlices(page.data.slices);
+  const page = await client.getSingle("heim");
+  const slices = bundleTextAndImageSlices(page.data.slices);
 
   return (
     <SliceZone
@@ -28,14 +28,11 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("heim").catch(() => notFound());
+  const page = await client.getSingle("heim");
 
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
-    },
   };
 }
 
@@ -45,7 +42,7 @@ type TextAndImageBundleSlice = {
   slices: Content.TextAndImageSlice[];
 };
 
-function bundleTextandImageSlices(
+function bundleTextAndImageSlices(
   slices: Content.HeimDocumentDataSlicesSlice[]
 ) {
   const res: (Content.HeimDocumentDataSlicesSlice | TextAndImageBundleSlice)[] =
@@ -68,6 +65,5 @@ function bundleTextandImageSlices(
       });
     }
   }
-
   return res;
 }
